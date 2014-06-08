@@ -5,6 +5,7 @@ using Library.Scripts.Tasks;
 using NUnit.Framework;
 using Simpler;
 using Simpler.Data;
+using Chic;
 
 namespace Tests.Scripts.Tasks
 {
@@ -33,9 +34,9 @@ namespace Tests.Scripts.Tasks
             }
 
             // Assert
-            using (var connection = Db.Connect(Database.Name))
+            using (var db = runScripts.Connect(Database.Name))
             {
-                var count = Db.GetScalar(connection, "select count(1) from db_version;");
+                var count = Db.GetScalar(db, "select count(1) from db_version;");
                 Assert.That(Convert.ToInt32(count), Is.EqualTo(1));
             }
         }
@@ -80,18 +81,18 @@ namespace Tests.Scripts.Tasks
             }
 
             // Assert
-            using (var connection = Db.Connect(Database.Name))
+            using (var db = runScripts.Connect(Database.Name))
             {
-                var count1 = Db.GetScalar(connection, "select count(1) from sqlite_master where name = 'table1';");
+                var count1 = Db.GetScalar(db, "select count(1) from sqlite_master where name = 'table1';");
                 Assert.That(Convert.ToInt32(count1), Is.EqualTo(1));
 
-                var count2 = Db.GetScalar(connection, "select count(1) from sqlite_master where name = 'table2';");
+                var count2 = Db.GetScalar(db, "select count(1) from sqlite_master where name = 'table2';");
                 Assert.That(Convert.ToInt32(count2), Is.EqualTo(1));
 
-                var count3 = Db.GetScalar(connection, "select count(1) from sqlite_master where name = 'table3';");
+                var count3 = Db.GetScalar(db, "select count(1) from sqlite_master where name = 'table3';");
                 Assert.That(Convert.ToInt32(count3), Is.EqualTo(1));
 
-                var count4 = Db.GetScalar(connection, "select count(1) from sqlite_master where name = 'table4';");
+                var count4 = Db.GetScalar(db, "select count(1) from sqlite_master where name = 'table4';");
                 Assert.That(Convert.ToInt32(count4), Is.EqualTo(1));
             }
         }

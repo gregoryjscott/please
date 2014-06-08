@@ -1,6 +1,7 @@
 ﻿using System;
 using Simpler;
 using Simpler.Data;
+using Chic;
 
 namespace Library.Scripts.Tasks
 {
@@ -18,13 +19,11 @@ namespace Library.Scripts.Tasks
 
         public override void Execute()
         {
-            const string sql = @"SELECT COUNT(1) FROM db_version;";
-
-            using (var connection = Db.Connect(In.ConnectionName))
+            using (var db = this.Connect(In.ConnectionName))
             {
                 try
                 {
-                    Db.GetScalar(connection, sql);
+                    Db.GetScalar(db, this.Sql());
                     Out.TableExists = true;
                 }
                 catch (Exception)

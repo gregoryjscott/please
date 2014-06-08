@@ -1,6 +1,7 @@
 ﻿using System;
 using Simpler;
 using Simpler.Data;
+using Chic;
 
 namespace Library.Scripts.Tasks
 {
@@ -19,13 +20,11 @@ namespace Library.Scripts.Tasks
 
         public override void Execute()
         {
-            var sql = @"INSERT INTO db_version (version) VALUES ('{0}');";
+            var sql = String.Format(this.Sql(), In.Version.Id);
 
-            sql = String.Format(sql, In.Version.Id);
-
-            using (var connection = Db.Connect(In.ConnectionName))
+            using (var db = this.Connect(In.ConnectionName))
             {
-                Out.RowsAffected = Db.GetResult(connection, sql);
+                Out.RowsAffected = Db.GetResult(db, sql);
             }
         }
     }

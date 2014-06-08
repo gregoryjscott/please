@@ -1,5 +1,6 @@
 ﻿using Simpler;
 using Simpler.Data;
+using Chic;
 
 namespace Library.Scripts.Tasks
 {
@@ -17,11 +18,9 @@ namespace Library.Scripts.Tasks
 
         public override void Execute()
         {
-            const string sql = @"CREATE TABLE db_version (version NVARCHAR(255) NOT NULL UNIQUE);";
-
-            using (var connection = Db.Connect(In.ConnectionName))
+            using (var db = this.Connect(In.ConnectionName))
             {
-                Out.RowsAffected = Db.GetResult(connection, sql);
+                Out.RowsAffected = Db.GetResult(db, this.Sql());
             }
         }
     }

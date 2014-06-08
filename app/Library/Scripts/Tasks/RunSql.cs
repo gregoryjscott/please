@@ -2,6 +2,7 @@
 using System.IO;
 using Simpler;
 using Simpler.Data;
+using Chic;
 
 namespace Library.Scripts.Tasks
 {
@@ -26,7 +27,7 @@ namespace Library.Scripts.Tasks
                 SplitSqlOnGo.Execute();
                 var sqlStrings = SplitSqlOnGo.Out.SqlStrings;
 
-                using (var connection = Db.Connect(In.ConnectionName))
+                using (var connection = this.Connect(In.ConnectionName))
                 {
                     foreach (var sqlString in sqlStrings)
                     {

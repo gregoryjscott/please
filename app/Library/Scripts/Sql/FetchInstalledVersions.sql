@@ -1,0 +1,1 @@
+﻿SELECT version as Id FROM db_version;

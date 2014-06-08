@@ -1,5 +1,6 @@
 ﻿using Simpler;
 using Simpler.Data;
+using Chic;
 
 namespace Library.Scripts.Tasks
 {
@@ -17,11 +18,9 @@ namespace Library.Scripts.Tasks
 
         public override void Execute()
         {
-            const string sql = @"SELECT version as Id FROM db_version;";
-
-            using (var connection = Db.Connect(In.ConnectionName))
+            using (var db = this.Connect(In.ConnectionName))
             {
-                Out.Versions = Db.GetMany<Version>(connection, sql);
+                Out.Versions = Db.GetMany<Version>(db, this.Sql());
             }
         }
     }

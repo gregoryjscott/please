@@ -1,0 +1,1 @@
+﻿INSERT INTO db_version (version) VALUES ('{0}');

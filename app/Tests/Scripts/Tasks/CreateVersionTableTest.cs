@@ -1,9 +1,9 @@
 ﻿using System;
-using System.IO;
 using Library.Scripts.Tasks;
 using NUnit.Framework;
 using Simpler;
 using Simpler.Data;
+using Chic;
 
 namespace Tests.Scripts.Tasks
 {
@@ -23,9 +23,9 @@ namespace Tests.Scripts.Tasks
             createVersionTable.Execute();
 
             // Assert
-            using (var connection = Db.Connect(Database.Name))
+            using (var db = createVersionTable.Connect(Database.Name))
             {
-                var count = Db.GetScalar(connection, "select count(1) from sqlite_master where type = 'table';");
+                var count = Db.GetScalar(db, "select count(1) from sqlite_master where type = 'table';");
                 Assert.That(Convert.ToInt32(count), Is.EqualTo(1));
             }
         }

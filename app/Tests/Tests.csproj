@@ -172,6 +172,10 @@
       <Project>{1E9E5E06-CD2A-4484-846D-6E6B21526482}</Project>
       <Name>Library</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Chic\Chic.csproj">
+      <Project>{3EF96576-B70C-4B29-BFE1-26D3437C54A8}</Project>
+      <Name>Chic</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Timestamp\files\after\" />

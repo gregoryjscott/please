@@ -1,10 +1,10 @@
 ﻿using System;
-using System.IO;
 using Library.Scripts.Tasks;
 using NUnit.Framework;
 using Simpler;
 using Simpler.Data;
 using Version = Library.Scripts.Version;
+using Chic;
 
 namespace Tests.Scripts.Tasks
 {
@@ -50,9 +50,9 @@ namespace Tests.Scripts.Tasks
             insertInstalledVersion.Execute();
 
             // Assert
-            using (var connection = Db.Connect(Database.Name))
+            using (var db = insertInstalledVersion.Connect(Database.Name))
             {
-                var count = Db.GetScalar(connection, "select version from db_version where version = '01';");
+                var count = Db.GetScalar(db, "select version from db_version where version = '01';");
                 Assert.That(Convert.ToInt32(count), Is.EqualTo(1));
             }
         }

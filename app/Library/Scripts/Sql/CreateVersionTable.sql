@@ -1,0 +1,1 @@
+﻿CREATE TABLE db_version (version NVARCHAR(255) NOT NULL UNIQUE);
