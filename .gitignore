@@ -16,3 +16,4 @@ _ReSharper.*
 *.Publish.xml
 Gemfile.lock
 output/
+*.userprefs
