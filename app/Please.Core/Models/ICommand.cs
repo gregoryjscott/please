@@ -1,6 +1,6 @@
 using Simpler;
 
-namespace Library
+namespace Please.Core.Models
 {
     public interface ICommand
     {

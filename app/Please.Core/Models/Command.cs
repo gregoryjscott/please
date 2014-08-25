@@ -2,7 +2,7 @@
 using Simpler;
 using Simpler.Core.Tasks;
 
-namespace Library
+namespace Please.Core.Models
 {
     public class Command<TTask> : ICommand where TTask : Task
     {
