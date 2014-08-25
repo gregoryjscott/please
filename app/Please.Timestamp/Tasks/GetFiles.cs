@@ -4,7 +4,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using Simpler;
 
-namespace Library.Timestamp.Tasks
+namespace Please.Timestamp.Tasks
 {
     public class GetFiles : InOutTask<GetFiles.Input, GetFiles.Output>
     {

@@ -6,10 +6,10 @@ namespace Please
     {
         static int Main(string[] args)
         {
-            var please = Task.New<Library.Please>();
-            please.In.Args = args;
-            please.Execute();
-            return please.Out.ExitCode;
+			var main = Task.New<Library.Main>();
+            main.In.Args = args;
+            main.Execute();
+            return main.Out.ExitCode;
         }
     }
 }

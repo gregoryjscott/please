@@ -4,14 +4,14 @@ using Library;
 using Library.Releases;
 using Library.Releases.Tasks;
 using Library.Scripts.Tasks;
-using Library.Timestamp.Tasks;
+using Please.Timestamp.Tasks;
 using NUnit.Framework;
 using Simpler;
 
 namespace Tests
 {
     [TestFixture]
-    public class PleaseTests
+    public class MainTests
     {
         static TTask ShouldExecute<TTask>(string commandText) where TTask : Task
         {
@@ -20,15 +20,15 @@ namespace Tests
                 command.Task = Fake.Task<TTask>();
             }
 
-            var please = Task.New<Please>();
-            please.In.Args = commandText.Split(' ');
+			var main = Task.New<Main>();
+            main.In.Args = commandText.Split(' ');
             using (var sw = new StringWriter())
             {
                 Console.SetOut(sw);
-                please.Execute();
+                main.Execute();
             }
 
-            var task = please.Out.Command.Task as TTask;
+            var task = main.Out.Command.Task as TTask;
             if (task == null) throw new Exception("Unexpected command task was found.");
             return task;
         }
@@ -366,15 +366,15 @@ namespace Tests
                 command.Task = Fake.Task<Run>();
             }
 
-            var please = Task.New<Please>();
-            please.In.Args = "run sql".Split(' ');
+			var main = Task.New<Main>();
+            main.In.Args = "run sql".Split(' ');
             using (var sw = new StringWriter())
             {
                 Console.SetOut(sw);
-                please.Execute();
+                main.Execute();
             }
 
-            Assert.That(please.Out.ExitCode, Is.EqualTo(0));
+            Assert.That(main.Out.ExitCode, Is.EqualTo(0));
         }
 
         [Test]
@@ -385,15 +385,15 @@ namespace Tests
                 command.Task = Fake.Task<Run>();
             }
 
-            var please = Task.New<Please>();
-            please.In.Args = "this is wrong".Split(' ');
+			var main = Task.New<Main>();
+            main.In.Args = "this is wrong".Split(' ');
             using (var sw = new StringWriter())
             {
                 Console.SetOut(sw);
-                please.Execute();
+                main.Execute();
             }
 
-            Assert.That(please.Out.ExitCode, Is.EqualTo(1));
+            Assert.That(main.Out.ExitCode, Is.EqualTo(1));
         }
     }
 }

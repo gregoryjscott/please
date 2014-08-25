@@ -4,7 +4,7 @@ using Simpler;
 
 namespace Library
 {
-    public class Please : InOutTask<Please.Input, Please.Output>
+    public class Main : InOutTask<Main.Input, Main.Output>
     {
         public class Input
         {

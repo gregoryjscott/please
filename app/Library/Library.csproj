@@ -39,11 +39,11 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Castle.Core">
-      <HintPath>..\..\packages\Castle.Core.2.5.2\lib\NET35\Castle.Core.dll</HintPath>
-    </Reference>
     <Reference Include="Simpler">
       <HintPath>..\..\packages\Simpler.2.3.0\lib\Simpler.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core">
+      <HintPath>..\..\packages\Castle.Core.2.5.2\lib\NET35\Castle.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -51,8 +51,6 @@
     <Compile Include="Releases\BumpType.cs" />
     <Compile Include="Releases\FileType.cs" />
     <Compile Include="Releases\Tasks\Bump.cs" />
-    <Compile Include="Command.cs" />
-    <Compile Include="Please.cs" />
     <Compile Include="Scripts\Script.cs" />
     <Compile Include="Scripts\RunException.cs" />
     <Compile Include="Scripts\Tasks\CheckForVersionTable.cs" />
@@ -68,15 +66,11 @@
     <Compile Include="Scripts\Tasks\RunScripts.cs" />
     <Compile Include="Scripts\Tasks\RunMissingVersions.cs" />
     <Compile Include="Commands.cs" />
-    <Compile Include="ICommand.cs" />
-    <Compile Include="Option.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Releases\Tasks\BumpAssemblyInfo.cs" />
     <Compile Include="Releases\Tasks\BumpNuspec.cs" />
     <Compile Include="Releases\Tasks\BumpScript.cs" />
-    <Compile Include="Timestamp\Tasks\GetFiles.cs" />
-    <Compile Include="Timestamp\Tasks\AddTimestamp.cs" />
-    <Compile Include="Timestamp\TimestampFile.cs" />
+    <Compile Include="Main.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -90,4 +84,14 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <ProjectReference Include="..\Please.Timestamp\Please.Timestamp.csproj">
+      <Project>{140DA5C3-6CAF-4094-8C44-CB32A5AC6CBD}</Project>
+      <Name>Please.Timestamp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Please.Core\Please.Core.csproj">
+      <Project>{A2D78C04-AE8D-443A-ADBF-1170323E5E3E}</Project>
+      <Name>Please.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

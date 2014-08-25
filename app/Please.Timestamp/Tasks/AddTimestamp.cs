@@ -2,7 +2,7 @@
 using Simpler;
 using System.IO;
 
-namespace Library.Timestamp.Tasks
+namespace Please.Timestamp.Tasks
 {
     public class AddTimestamp : InTask<AddTimestamp.Input>
     {

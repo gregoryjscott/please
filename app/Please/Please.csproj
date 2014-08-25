@@ -40,11 +40,11 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Castle.Core">
-      <HintPath>..\..\packages\Castle.Core.2.5.2\lib\NET35\Castle.Core.dll</HintPath>
-    </Reference>
     <Reference Include="Simpler">
       <HintPath>..\..\packages\Simpler.2.3.0\lib\Simpler.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core">
+      <HintPath>..\..\packages\Castle.Core.2.5.2\lib\NET35\Castle.Core.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -55,6 +55,10 @@
     <ProjectReference Include="..\Library\Library.csproj">
       <Project>{1E9E5E06-CD2A-4484-846D-6E6B21526482}</Project>
       <Name>Library</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Please.Timestamp\Please.Timestamp.csproj">
+      <Project>{140DA5C3-6CAF-4094-8C44-CB32A5AC6CBD}</Project>
+      <Name>Please.Timestamp</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

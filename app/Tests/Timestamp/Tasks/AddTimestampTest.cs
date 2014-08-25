@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using Library.Timestamp.Tasks;
+using Please.Timestamp.Tasks;
 using NUnit.Framework;
 using Simpler;
 

@@ -33,26 +33,22 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.SQLite">
-      <HintPath>..\..\packages\System.Data.SQLite.Core.1.0.92.0\lib\net40\System.Data.SQLite.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="Simpler">
+      <HintPath>..\..\packages\Simpler.2.3.0\lib\Simpler.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\packages\NUnit.2.6.2\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="Castle.Core">
       <HintPath>..\..\packages\Castle.Core.2.5.2\lib\NET35\Castle.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Simpler">
-      <HintPath>..\..\packages\Simpler.2.3.0\lib\Simpler.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PleaseTests.cs" />
     <Compile Include="Scripts\Tasks\CheckForVersionTableTest.cs" />
     <Compile Include="Scripts\Tasks\RunSqlTest.cs" />
     <Compile Include="Scripts\Tasks\RunProcessTest.cs" />
@@ -75,6 +71,7 @@
     <Compile Include="Config\Scripts.cs" />
     <Compile Include="Config\Releases.cs" />
     <Compile Include="Config\Timestamp.cs" />
+    <Compile Include="MainTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\files\sql\error.sql">
@@ -171,6 +168,14 @@
     <ProjectReference Include="..\Library\Library.csproj">
       <Project>{1E9E5E06-CD2A-4484-846D-6E6B21526482}</Project>
       <Name>Library</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Please.Timestamp\Please.Timestamp.csproj">
+      <Project>{140DA5C3-6CAF-4094-8C44-CB32A5AC6CBD}</Project>
+      <Name>Please.Timestamp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Please.Core\Please.Core.csproj">
+      <Project>{A2D78C04-AE8D-443A-ADBF-1170323E5E3E}</Project>
+      <Name>Please.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
