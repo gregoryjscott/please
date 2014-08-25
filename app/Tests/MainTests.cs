@@ -20,7 +20,7 @@ namespace Tests
                 command.Task = Fake.Task<TTask>();
             }
 
-			var main = Task.New<Main>();
+            var main = Task.New<Main>();
             main.In.Args = commandText.Split(' ');
             using (var sw = new StringWriter())
             {
@@ -366,7 +366,7 @@ namespace Tests
                 command.Task = Fake.Task<Run>();
             }
 
-			var main = Task.New<Main>();
+            var main = Task.New<Main>();
             main.In.Args = "run sql".Split(' ');
             using (var sw = new StringWriter())
             {
@@ -385,7 +385,7 @@ namespace Tests
                 command.Task = Fake.Task<Run>();
             }
 
-			var main = Task.New<Main>();
+            var main = Task.New<Main>();
             main.In.Args = "this is wrong".Split(' ');
             using (var sw = new StringWriter())
             {

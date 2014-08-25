@@ -6,7 +6,7 @@ namespace Please
     {
         static int Main(string[] args)
         {
-			var main = Task.New<Library.Main>();
+            var main = Task.New<Library.Main>();
             main.In.Args = args;
             main.Execute();
             return main.Out.ExitCode;
