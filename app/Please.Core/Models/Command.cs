@@ -21,11 +21,18 @@ namespace Please.Core.Models
 
             foreach (var option in Options)
             {
-                var match = Regex.Match(options, option.Pattern);
-                if (match.Success)
+                if (Name == "add timestamp")
                 {
-                    option.Action((TTask)Task, match);
-                    options = options.Replace(match.ToString(), "");
+                    option.Action2((TTask)Task, options);
+                }
+                else
+                {
+                    var match = Regex.Match(options, option.Pattern);
+                    if (match.Success)
+                    {
+                        option.Action((TTask)Task, match);
+                        options = options.Replace(match.ToString(), "");
+                    }
                 }
             }
 

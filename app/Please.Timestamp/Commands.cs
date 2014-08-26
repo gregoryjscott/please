@@ -1,5 +1,6 @@
 using Please.Timestamp.Tasks;
 using Please.Core.Models;
+using Newtonsoft.Json;
 
 namespace Please.Timestamp
 {
@@ -9,18 +10,18 @@ namespace Please.Timestamp
         const string FileOrDirectory = @"(?:[^/?*:;{}\\]+)";
 
         public static Command<AddTimestamp> Timestamp =
-            new Command<AddTimestamp>
-            {
+            new Command<AddTimestamp> {
                 Name = "add timestamp",
-                Options =
-                    new[]
-                    {
-                        new Option<AddTimestamp>
-                        {
-                            Pattern = @"in (?<Directory>" + Path + FileOrDirectory + ")",
-                            Action = (task, match) => task.In.Directory = match.Groups["Directory"].Value.Trim()
+                Options = new[] {
+                    new Option<AddTimestamp> {
+                        Pattern = @"in (?<Directory>" + Path + FileOrDirectory + ")",
+                        Action2 = (task, options) => {
+                            var directory = options.Trim();
+                            var json = @"{'Directory': '" + directory + "'}";
+                            task.In = JsonConvert.DeserializeObject<AddTimestamp.Input>(json);
                         }
                     }
+                }
             };
     }
 }

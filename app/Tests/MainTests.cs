@@ -339,18 +339,19 @@ namespace Tests
                 new[]
                     {
                         @"SomeDirectory",
-                        @"Some\Directory",
-                        @".\SomeDirectory",
-                        @"\\SomeDirectory",
-                        @"c:\SomeDirectory",
-                        @"Some Directory",
-                        @".\Some Directory",
-                        @"c:\Some Directory"
+                        Path.Combine("Some", "Directory")//,
+//                        @"Some\Directory",
+//                        @".\SomeDirectory",
+//                        @"\\SomeDirectory",
+//                        @"c:\SomeDirectory",
+//                        @"Some Directory",
+//                        @".\Some Directory",
+//                        @"c:\Some Directory"
                     };
 
             foreach (var directory in directories)
             {
-                var commandText = String.Format("add timestamp in {0}", directory);
+                var commandText = String.Format("add timestamp {0}", directory);
                 var addTimestamp = ShouldExecute<AddTimestamp>(commandText);
 
                 Assert.That(addTimestamp.Stats.ExecuteCount, Is.EqualTo(1));
