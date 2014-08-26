@@ -1,0 +1,14 @@
+{
+  "directory" : {
+    "inputs": [
+      {"directory": "SomeDirectory"},
+      {"directory": "Some/Directory"},
+      {"directory": "./SomeDirectory"},
+      {"directory": "//SomeDirectory"},
+      {"directory": "c:/SomeDirectory"},
+      {"directory": "Some Directory"},
+      {"directory": "./Some Directory"},
+      {"directory": "c:/Some Directory"}
+    ]
+  }
+}

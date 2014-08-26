@@ -335,27 +335,16 @@ namespace Tests
         [Test]
         public void should_add_timestamp_in_directory()
         {
-            var directories =
-                new[]
-                    {
-                        @"SomeDirectory",
-                        Path.Combine("Some", "Directory")//,
-//                        @"Some\Directory",
-//                        @".\SomeDirectory",
-//                        @"\\SomeDirectory",
-//                        @"c:\SomeDirectory",
-//                        @"Some Directory",
-//                        @".\Some Directory",
-//                        @"c:\Some Directory"
-                    };
+            dynamic fixtures = Centroid.Config.FromFile("fixtures.json");
+            dynamic inputs = fixtures.Directory.Inputs;
 
-            foreach (var directory in directories)
+            foreach (var input in inputs)
             {
-                var commandText = String.Format("add timestamp {0}", directory);
+                var commandText = String.Format("add timestamp {0}", input);
                 var addTimestamp = ShouldExecute<AddTimestamp>(commandText);
 
                 Assert.That(addTimestamp.Stats.ExecuteCount, Is.EqualTo(1));
-                Assert.That(addTimestamp.In.Directory, Is.EqualTo(directory));
+                Assert.That(addTimestamp.In.Directory, Is.EqualTo(input.Directory));
             }
         }
 

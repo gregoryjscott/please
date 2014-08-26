@@ -47,6 +47,12 @@
     <Reference Include="Castle.Core">
       <HintPath>..\..\packages\Castle.Core.2.5.2\lib\NET35\Castle.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.6.0.4\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Centroid">
+      <HintPath>..\..\packages\Centroid.1.1.0\lib\net40\Centroid.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Scripts\Tasks\CheckForVersionTableTest.cs" />
@@ -162,6 +168,10 @@
     </None>
     <None Include="Timestamp\files\before\file2.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\cfg\fixtures.json">
+      <Link>fixtures.json</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
