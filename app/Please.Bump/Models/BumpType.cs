@@ -1,4 +1,4 @@
-﻿namespace Library.Releases
+﻿namespace Please.Bump.Models
 {
     public enum BumpType
     {

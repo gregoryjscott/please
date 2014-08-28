@@ -1,5 +1,3 @@
-using Library.Releases;
-using Library.Releases.Tasks;
 using Library.Scripts.Tasks;
 using Please.Core.Models;
 
@@ -9,58 +7,6 @@ namespace Library
     {
         const string Path = @"(?:[a-zA-Z]\:\\|\\\\|\.\\)*([^/?*:;{}\\]+\\)*";
         const string FileOrDirectory = @"(?:[^/?*:;{}\\]+)";
-
-        static readonly Command<Bump> Bump =
-            new Command<Bump>
-            {
-                Name = "bump",
-                Options =
-                    new[]
-                    {
-                        new Option<Bump>
-                        {
-                            Pattern = @"major version\s",
-                            Action = (task, match) => task.In.BumpType = BumpType.Major
-                        },
-                        new Option<Bump>
-                        {
-                            Pattern = @"minor version\s",
-                            Action = (task, match) => task.In.BumpType = BumpType.Minor
-                        },
-                        new Option<Bump>
-                        {
-                            Pattern = @"patch version\s",
-                            Action = (task, match) => task.In.BumpType = BumpType.Patch
-                        },
-                        new Option<Bump>
-                        {
-                            Pattern = @"in (?<File>" + Path + @"AssemblyInfo\.cs)",
-                            Action = (task, match) =>
-                                     {
-                                         task.In.FileType = FileType.AssemblyInfo;
-                                         task.In.FileName = match.Groups["File"].Value.Trim();
-                                     }
-                        },
-                        new Option<Bump>
-                        {
-                            Pattern = @"in (?<File>" + Path + FileOrDirectory + @"\.nuspec)",
-                            Action = (task, match) =>
-                                     {
-                                         task.In.FileType = FileType.Nuspec;
-                                         task.In.FileName = match.Groups["File"].Value.Trim();
-                                     }
-                        },
-                        new Option<Bump>
-                        {
-                            Pattern = @"in (?<File>" + Path + FileOrDirectory + ")",
-                            Action = (task, match) =>
-                                     {
-                                         task.In.FileType = FileType.Script;
-                                         task.In.FileName = match.Groups["File"].Value.Trim();
-                                     }
-                        }
-                    }
-            };
 
         static readonly Command<Run> RunSql =
             new Command<Run>
@@ -218,6 +164,6 @@ namespace Library
                     }
             };
 
-        public static ICommand[] All = {Bump, RunSql, RunPy, RunAll, Please.Timestamp.Commands.Timestamp};
+        public static ICommand[] All = {Please.Bump.Commands.Bump, RunSql, RunPy, RunAll, Please.Timestamp.Commands.Timestamp};
     }
 }

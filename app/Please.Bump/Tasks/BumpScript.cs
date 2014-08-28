@@ -2,8 +2,9 @@
 using System.IO;
 using System.Text.RegularExpressions;
 using Simpler;
+using Please.Bump.Models;
 
-namespace Library.Releases.Tasks
+namespace Please.Bump.Tasks
 {
     public class BumpScript : InTask<BumpScript.Input>
     {

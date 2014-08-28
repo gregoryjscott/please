@@ -1,8 +1,9 @@
 ﻿using Simpler;
+using Please.Bump.Models;
 
-namespace Library.Releases.Tasks
+namespace Please.Bump.Tasks
 {
-    public class Bump : InTask<Bump.Input>
+    public class BumpVersion : InTask<BumpVersion.Input>
     {
         public class Input
         {

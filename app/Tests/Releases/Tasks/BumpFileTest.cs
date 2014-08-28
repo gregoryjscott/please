@@ -1,7 +1,7 @@
-﻿using Library.Releases;
-using Library.Releases.Tasks;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Simpler;
+using Please.Bump.Tasks;
+using Please.Bump.Models;
 
 namespace Tests.Releases.Tasks
 {
@@ -12,7 +12,7 @@ namespace Tests.Releases.Tasks
         public void should_bump_given_nuspec_file()
         {
             // Arrange
-            var bump = Task.New<Bump>();
+            var bump = Task.New<BumpVersion>();
             bump.In.BumpType = BumpType.Patch;
             bump.In.FileType = FileType.Nuspec;
             bump.In.FileName = @"C:\Somewhere\Foo.nuspec";
@@ -33,7 +33,7 @@ namespace Tests.Releases.Tasks
         public void should_bump_given_AssemblyInfo_file()
         {
             // Arrange
-            var bump = Task.New<Bump>();
+            var bump = Task.New<BumpVersion>();
             bump.In.BumpType = BumpType.Patch;
             bump.In.FileType = FileType.AssemblyInfo;
             bump.In.FileName = @"C:\Somewhere\AssemblyInfo.cs";
@@ -54,7 +54,7 @@ namespace Tests.Releases.Tasks
         public void should_bump_given_script_file()
         {
             // Arrange
-            var bump = Task.New<Bump>();
+            var bump = Task.New<BumpVersion>();
             bump.In.BumpType = BumpType.Patch;
             bump.In.FileType = FileType.Script;
             bump.In.FileName = @"C:\SomewhereElse\scriptC.exe";

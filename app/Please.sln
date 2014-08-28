@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Please.Timestamp", "Please.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Please.Core", "Please.Core\Please.Core.csproj", "{A2D78C04-AE8D-443A-ADBF-1170323E5E3E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Please.Bump", "Please.Bump\Please.Bump.csproj", "{AE50C734-C2A5-4080-B73F-8D6FFC36DF61}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +67,18 @@ Global
 		{A2D78C04-AE8D-443A-ADBF-1170323E5E3E}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{A2D78C04-AE8D-443A-ADBF-1170323E5E3E}.Release|x86.ActiveCfg = Release|Any CPU
 		{A2D78C04-AE8D-443A-ADBF-1170323E5E3E}.Release|x86.Build.0 = Release|Any CPU
+		{AE50C734-C2A5-4080-B73F-8D6FFC36DF61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE50C734-C2A5-4080-B73F-8D6FFC36DF61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE50C734-C2A5-4080-B73F-8D6FFC36DF61}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{AE50C734-C2A5-4080-B73F-8D6FFC36DF61}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{AE50C734-C2A5-4080-B73F-8D6FFC36DF61}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AE50C734-C2A5-4080-B73F-8D6FFC36DF61}.Debug|x86.Build.0 = Debug|Any CPU
+		{AE50C734-C2A5-4080-B73F-8D6FFC36DF61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE50C734-C2A5-4080-B73F-8D6FFC36DF61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE50C734-C2A5-4080-B73F-8D6FFC36DF61}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{AE50C734-C2A5-4080-B73F-8D6FFC36DF61}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{AE50C734-C2A5-4080-B73F-8D6FFC36DF61}.Release|x86.ActiveCfg = Release|Any CPU
+		{AE50C734-C2A5-4080-B73F-8D6FFC36DF61}.Release|x86.Build.0 = Release|Any CPU
 		{EED1A9A6-B789-48CE-83E9-98CD5BFE1CD1}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{EED1A9A6-B789-48CE-83E9-98CD5BFE1CD1}.Debug|Any CPU.Build.0 = Debug|x86
 		{EED1A9A6-B789-48CE-83E9-98CD5BFE1CD1}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
@@ -80,8 +94,6 @@ Global
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Tests\Tests.csproj
-	EndGlobalSection
-  GlobalSection(MonoDevelopProperties) = preSolution
 		Policies = $0
 		$0.TextStylePolicy = $1
 		$1.inheritsSet = null
@@ -146,7 +158,7 @@ Global
 		$9.inheritsScope = text/plain
 		$9.scope = application/json
 		$0.StandardHeader = $10
-		$10.Text =
+		$10.Text = 
 		$10.IncludeInNewFiles = True
 		$0.NameConventionPolicy = $11
 		$11.Rules = $12
@@ -272,7 +284,7 @@ Global
 		$32.NamingStyle = PascalCase
 		$32.IncludeInstanceMembers = True
 		$32.IncludeStaticEntities = True
-  EndGlobalSection
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection

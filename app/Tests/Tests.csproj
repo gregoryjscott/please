@@ -187,6 +187,10 @@
       <Project>{A2D78C04-AE8D-443A-ADBF-1170323E5E3E}</Project>
       <Name>Please.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Please.Bump\Please.Bump.csproj">
+      <Project>{AE50C734-C2A5-4080-B73F-8D6FFC36DF61}</Project>
+      <Name>Please.Bump</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Timestamp\files\after\" />

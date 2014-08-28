@@ -1,8 +1,8 @@
 ﻿using System.IO;
-using Library.Releases;
-using Library.Releases.Tasks;
 using NUnit.Framework;
 using Simpler;
+using Please.Bump.Models;
+using Please.Bump.Tasks;
 
 namespace Tests.Releases.Tasks
 {

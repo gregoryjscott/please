@@ -1,12 +1,12 @@
 ﻿using System;
 using System.IO;
 using Library;
-using Library.Releases;
-using Library.Releases.Tasks;
 using Library.Scripts.Tasks;
 using Please.Timestamp.Tasks;
 using NUnit.Framework;
 using Simpler;
+using Please.Bump.Tasks;
+using Please.Bump.Models;
 
 namespace Tests
 {
@@ -52,7 +52,7 @@ namespace Tests
             foreach (var file in files)
             {
                 var commandText = String.Format("bump major version in {0}", file);
-                var bump = ShouldExecute<Bump>(commandText);
+                var bump = ShouldExecute<BumpVersion>(commandText);
 
                 Assert.That(bump.Stats.ExecuteCount, Is.EqualTo(1));
                 Assert.That(bump.In.BumpType, Is.EqualTo(BumpType.Major));
@@ -81,7 +81,7 @@ namespace Tests
             foreach (var file in files)
             {
                 var commandText = String.Format("bump minor version in {0}", file);
-                var bump = ShouldExecute<Bump>(commandText);
+                var bump = ShouldExecute<BumpVersion>(commandText);
 
                 Assert.That(bump.Stats.ExecuteCount, Is.EqualTo(1));
                 Assert.That(bump.In.BumpType, Is.EqualTo(BumpType.Minor));
@@ -110,7 +110,7 @@ namespace Tests
             foreach (var file in files)
             {
                 var commandText = String.Format("bump patch version in {0}", file);
-                var bump = ShouldExecute<Bump>(commandText);
+                var bump = ShouldExecute<BumpVersion>(commandText);
 
                 Assert.That(bump.Stats.ExecuteCount, Is.EqualTo(1));
                 Assert.That(bump.In.BumpType, Is.EqualTo(BumpType.Patch));
