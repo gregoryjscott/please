@@ -1,5 +1,5 @@
 {
-  "directory" : {
+  "directory": {
     "inputs": [
       {"directory": "SomeDirectory"},
       {"directory": "Some/Directory"},
@@ -9,6 +9,18 @@
       {"directory": "Some Directory"},
       {"directory": "./Some Directory"},
       {"directory": "c:/Some Directory"}
+    ]
+  },
+  "assemblyInfo": {
+    "inputs": [
+      {"file": "AssemblyInfo.cs"},
+      {"file": "SomeDirectory/AssemblyInfo.cs"},
+      {"file": "./AssemblyInfo.cs"},
+      {"file": "./Some/Directory/AssemblyInfo.cs"},
+      {"file": "//AssemblyInfo.cs"},
+      {"file": "//Some/Directory/AssemblyInfo.cs"},
+      {"file": "c:/AssemblyInfo.cs"},
+      {"file": "c:/Some/Directory/AssemblyInfo.cs"}
     ]
   }
 }
