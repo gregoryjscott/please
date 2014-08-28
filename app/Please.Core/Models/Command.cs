@@ -21,7 +21,7 @@ namespace Please.Core.Models
 
             foreach (var option in Options)
             {
-                if (Name == "add timestamp")
+                if ((Name == "add timestamp") || (Name == "bump version"))
                 {
                     option.Action2((TTask)Task, options);
                 }

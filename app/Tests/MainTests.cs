@@ -5,7 +5,6 @@ using Please.Timestamp.Tasks;
 using NUnit.Framework;
 using Simpler;
 using Please.Bump.Tasks;
-using Please.Bump.Models;
 using Please.Run.Tasks;
 
 namespace Tests
@@ -13,111 +12,23 @@ namespace Tests
     [TestFixture]
     public class MainTests
     {
-        static TTask ShouldExecute<TTask>(string commandText) where TTask : Task
-        {
-            foreach (var command in Commands.All)
-            {
-                command.Task = Fake.Task<TTask>();
-            }
-
-            var main = Task.New<Main>();
-            main.In.Args = commandText.Split(' ');
-            using (var sw = new StringWriter())
-            {
-                Console.SetOut(sw);
-                main.Execute();
-            }
-
-            var task = main.Out.Command.Task as TTask;
-            if (task == null) throw new Exception("Unexpected command task was found.");
-            return task;
-        }
+        dynamic fixtures = Centroid.Config.FromFile("fixtures.json");
 
         [Test]
-        public void should_bump_major_in_AssemblyInfo()
+        public void should_send_input_to_bump_version()
         {
-            var files =
-                new[]
-                    {
-                        @"AssemblyInfo.cs",
-                        @"SomeDirectory\AssemblyInfo.cs",
-                        @".\AssemblyInfo.cs",
-                        @".\Some\Directory\AssemblyInfo.cs",
-                        @"\\AssemblyInfo.cs",
-                        @"\\Some\Directory\AssemblyInfo.cs",
-                        @"c:\AssemblyInfo.cs",
-                        @"c:\Some\Directory\AssemblyInfo.cs"
-                    };
-
-            foreach (var file in files)
+            dynamic inputs = fixtures.Bump.Inputs;
+            foreach (var input in inputs)
             {
-                var commandText = String.Format("bump major version in {0}", file);
+                var commandText = String.Format("bump version {0}", input);
                 var bump = ShouldExecute<BumpVersion>(commandText);
 
                 Assert.That(bump.Stats.ExecuteCount, Is.EqualTo(1));
-                Assert.That(bump.In.BumpType, Is.EqualTo(BumpType.Major));
-                Assert.That(bump.In.FileType, Is.EqualTo(FileType.AssemblyInfo));
-                Assert.That(bump.In.FileName, Is.EqualTo(file));
+                Assert.That(bump.In.BumpType.ToString(), Is.EqualTo(input.BumpType));
+                Assert.That(bump.In.FileType.ToString(), Is.EqualTo(input.FileType));
+                Assert.That(bump.In.FileName, Is.EqualTo(input.fileName));
             }
         }
-
-        [Test]
-        public void should_bump_minor_in_nuspec()
-        {
-            var files =
-                new[]
-                    {
-                        @"Something.nuspec",
-                        @"SomeDirectory\Something.nuspec",
-                        @".\Something.nuspec",
-                        @".\Some\Directory\Something.nuspec",
-                        @"\\Something.nuspec",
-                        @"\\Some\Directory\Something.nuspec",
-                        @"c:\Something.nuspec",
-                        @"c:\Some\Directory\Something.nuspec"
-                    };
-
-
-            foreach (var file in files)
-            {
-                var commandText = String.Format("bump minor version in {0}", file);
-                var bump = ShouldExecute<BumpVersion>(commandText);
-
-                Assert.That(bump.Stats.ExecuteCount, Is.EqualTo(1));
-                Assert.That(bump.In.BumpType, Is.EqualTo(BumpType.Minor));
-                Assert.That(bump.In.FileType, Is.EqualTo(FileType.Nuspec));
-                Assert.That(bump.In.FileName, Is.EqualTo(file));
-            }
-       }
-
-        [Test]
-        public void should_bump_patch_in_script()
-        {
-            var files =
-                new[]
-                    {
-                        @"Whatever.bat",
-                        @"SomeDirectory\Whatever.bat",
-                        @".\Whatever.bat",
-                        @".\Some\Directory\Whatever.bat",
-                        @"\\Whatever.bat",
-                        @"\\Some\Directory\Whatever.bat",
-                        @"c:\Whatever.bat",
-                        @"c:\Some\Directory\Whatever.bat"
-                    };
-
-
-            foreach (var file in files)
-            {
-                var commandText = String.Format("bump patch version in {0}", file);
-                var bump = ShouldExecute<BumpVersion>(commandText);
-
-                Assert.That(bump.Stats.ExecuteCount, Is.EqualTo(1));
-                Assert.That(bump.In.BumpType, Is.EqualTo(BumpType.Patch));
-                Assert.That(bump.In.FileType, Is.EqualTo(FileType.Script));
-                Assert.That(bump.In.FileName, Is.EqualTo(file));
-            }
-         }
 
         [Test]
         public void should_run_sql_with_versioning()
@@ -335,9 +246,7 @@ namespace Tests
         [Test]
         public void should_add_timestamp_in_directory()
         {
-            dynamic fixtures = Centroid.Config.FromFile("fixtures.json");
             dynamic inputs = fixtures.Directory.Inputs;
-
             foreach (var input in inputs)
             {
                 var commandText = String.Format("add timestamp {0}", input);
@@ -384,6 +293,26 @@ namespace Tests
             }
 
             Assert.That(main.Out.ExitCode, Is.EqualTo(1));
+        }
+
+        static TTask ShouldExecute<TTask>(string commandText) where TTask : Task
+        {
+            foreach (var command in Commands.All)
+            {
+                command.Task = Fake.Task<TTask>();
+            }
+
+            var main = Task.New<Main>();
+            main.In.Args = commandText.Split(' ');
+            using (var sw = new StringWriter())
+            {
+                Console.SetOut(sw);
+                main.Execute();
+            }
+
+            var task = main.Out.Command.Task as TTask;
+            if (task == null) throw new Exception("Unexpected command task was found.");
+            return task;
         }
     }
 }

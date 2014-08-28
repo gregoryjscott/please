@@ -11,16 +11,23 @@
       {"directory": "c:/Some Directory"}
     ]
   },
-  "assemblyInfo": {
+  "bump": {
     "inputs": [
-      {"file": "AssemblyInfo.cs"},
-      {"file": "SomeDirectory/AssemblyInfo.cs"},
-      {"file": "./AssemblyInfo.cs"},
-      {"file": "./Some/Directory/AssemblyInfo.cs"},
-      {"file": "//AssemblyInfo.cs"},
-      {"file": "//Some/Directory/AssemblyInfo.cs"},
-      {"file": "c:/AssemblyInfo.cs"},
-      {"file": "c:/Some/Directory/AssemblyInfo.cs"}
+      {
+        "fileName": "AssemblyInfo.cs",
+        "bumpType": "Major",
+        "fileType": "AssemblyInfo"
+      },
+      {
+        "fileName": "SomeDirectory/Something.nuspec",
+        "bumpType": "Minor",
+        "fileType": "Nuspec"
+      },
+      {
+        "fileName": "./Some/Directory/Whatever.bat",
+        "bumpType": "Patch",
+        "fileType": "Script"
+      }
     ]
   }
 }
