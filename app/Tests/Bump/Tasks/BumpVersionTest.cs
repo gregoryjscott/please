@@ -3,10 +3,10 @@ using Simpler;
 using Please.Bump.Tasks;
 using Please.Bump.Models;
 
-namespace Tests.Releases.Tasks
+namespace Tests.Bump.Tasks
 {
     [TestFixture]
-    public class BumpFileTest
+    public class BumpVersionTest
     {
         [Test]
         public void should_bump_given_nuspec_file()

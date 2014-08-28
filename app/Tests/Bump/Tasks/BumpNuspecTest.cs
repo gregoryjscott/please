@@ -4,27 +4,26 @@ using Simpler;
 using Please.Bump.Models;
 using Please.Bump.Tasks;
 
-namespace Tests.Releases.Tasks
+namespace Tests.Bump.Tasks
 {
     [TestFixture]
-    public class BumpScriptTest
+    public class BumpNuspecTest
     {
-
         static void TestBump(BumpType bumpType, string fileContainingExpectedContents)
         {
             // Arrange
-            File.Delete(Config.Releases.Files.Script.After);
-            File.Copy(Config.Releases.Files.Script.Before, Config.Releases.Files.Script.After);
+            File.Delete(Config.Releases.Files.Nuspec.After);
+            File.Copy(Config.Releases.Files.Nuspec.Before, Config.Releases.Files.Nuspec.After);
 
-            var bump = Task.New<BumpScript>();
-            bump.In.FileName = Config.Releases.Files.Script.After;
+            var bump = Task.New<BumpNuspec>();
+            bump.In.FileName = Config.Releases.Files.Nuspec.After;
             bump.In.BumpType = bumpType;
 
             // Act
             bump.Execute();
 
             // Assert
-            var afterContents = File.ReadAllText(Config.Releases.Files.Script.After);
+            var afterContents = File.ReadAllText(Config.Releases.Files.Nuspec.After);
             var expectedContents = File.ReadAllText(fileContainingExpectedContents);
             Assert.That(afterContents, Is.EqualTo(expectedContents));
         }
@@ -32,19 +31,19 @@ namespace Tests.Releases.Tasks
         [Test]
         public void should_bump_major()
         {
-            TestBump(BumpType.Major, Config.Releases.Files.Script.MajorBumped);
+            TestBump(BumpType.Major, Config.Releases.Files.Nuspec.MajorBumped);
         }
 
         [Test]
         public void should_bump_minor()
         {
-            TestBump(BumpType.Minor, Config.Releases.Files.Script.MinorBumped);
+            TestBump(BumpType.Minor, Config.Releases.Files.Nuspec.MinorBumped);
         }
 
         [Test]
         public void should_bump_patch()
         {
-            TestBump(BumpType.Patch, Config.Releases.Files.Script.PatchBumped);
+            TestBump(BumpType.Patch, Config.Releases.Files.Nuspec.PatchBumped);
         }
     }
 }

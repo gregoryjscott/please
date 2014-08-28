@@ -4,26 +4,27 @@ using Simpler;
 using Please.Bump.Models;
 using Please.Bump.Tasks;
 
-namespace Tests.Releases.Tasks
+namespace Tests.Bump.Tasks
 {
     [TestFixture]
-    public class BumpAssemblyInfoTest
+    public class BumpScriptTest
     {
+
         static void TestBump(BumpType bumpType, string fileContainingExpectedContents)
         {
             // Arrange
-            File.Delete(Config.Releases.Files.AssemblyInfo.After);
-            File.Copy(Config.Releases.Files.AssemblyInfo.Before, Config.Releases.Files.AssemblyInfo.After);
+            File.Delete(Config.Releases.Files.Script.After);
+            File.Copy(Config.Releases.Files.Script.Before, Config.Releases.Files.Script.After);
 
-            var bump = Task.New<BumpAssemblyInfo>();
-            bump.In.FileName = Config.Releases.Files.AssemblyInfo.After;
+            var bump = Task.New<BumpScript>();
+            bump.In.FileName = Config.Releases.Files.Script.After;
             bump.In.BumpType = bumpType;
 
             // Act
             bump.Execute();
 
             // Assert
-            var afterContents = File.ReadAllText(Config.Releases.Files.AssemblyInfo.After);
+            var afterContents = File.ReadAllText(Config.Releases.Files.Script.After);
             var expectedContents = File.ReadAllText(fileContainingExpectedContents);
             Assert.That(afterContents, Is.EqualTo(expectedContents));
         }
@@ -31,19 +32,19 @@ namespace Tests.Releases.Tasks
         [Test]
         public void should_bump_major()
         {
-            TestBump(BumpType.Major, Config.Releases.Files.AssemblyInfo.MajorBumped);
+            TestBump(BumpType.Major, Config.Releases.Files.Script.MajorBumped);
         }
 
         [Test]
         public void should_bump_minor()
         {
-            TestBump(BumpType.Minor, Config.Releases.Files.AssemblyInfo.MinorBumped);
+            TestBump(BumpType.Minor, Config.Releases.Files.Script.MinorBumped);
         }
 
         [Test]
         public void should_bump_patch()
         {
-            TestBump(BumpType.Patch, Config.Releases.Files.AssemblyInfo.PatchBumped);
+            TestBump(BumpType.Patch, Config.Releases.Files.Script.PatchBumped);
         }
     }
 }

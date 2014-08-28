@@ -65,10 +65,6 @@
     <Compile Include="Scripts\Tasks\CreateVersionTableTest.cs" />
     <Compile Include="Scripts\Tasks\GetScriptsTest.cs" />
     <Compile Include="Scripts\Tasks\RunScriptsTest.cs" />
-    <Compile Include="Releases\Tasks\BumpNuspecTest.cs" />
-    <Compile Include="Releases\Tasks\BumpAssemblyInfoTest.cs" />
-    <Compile Include="Releases\Tasks\BumpScriptTest.cs" />
-    <Compile Include="Releases\Tasks\BumpFileTest.cs" />
     <Compile Include="Scripts\Tasks\RunMissingVersionsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Timestamp\Tasks\GetFilesTest.cs" />
@@ -78,6 +74,10 @@
     <Compile Include="Config\Releases.cs" />
     <Compile Include="Config\Timestamp.cs" />
     <Compile Include="MainTests.cs" />
+    <Compile Include="Bump\Tasks\BumpNuspecTest.cs" />
+    <Compile Include="Bump\Tasks\BumpAssemblyInfoTest.cs" />
+    <Compile Include="Bump\Tasks\BumpScriptTest.cs" />
+    <Compile Include="Bump\Tasks\BumpVersionTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\files\sql\error.sql">
@@ -116,18 +116,6 @@
     <Content Include="x86\SQLite.Interop.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Releases\files\nuspec\Nuspec_Before.nuspec">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Releases\files\nuspec\Nuspec_MajorBumped.nuspec">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Releases\files\nuspec\Nuspec_MinorBumped.nuspec">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Releases\files\nuspec\Nuspec_PatchBumped.nuspec">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="Scripts\files\empty.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -136,30 +124,6 @@
     </None>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <Content Include="Releases\files\script\Script_Before.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Releases\files\script\Script_MajorBumped.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Releases\files\script\Script_MinorBumped.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Releases\files\script\Script_PatchBumped.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <None Include="Releases\files\AssemblyInfo\AssemblyInfo_PatchBumped_cs">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Releases\files\AssemblyInfo\AssemblyInfo_MinorBumped_cs">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Releases\files\AssemblyInfo\AssemblyInfo_MajorBumped_cs">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Releases\files\AssemblyInfo\AssemblyInfo_Before_cs">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="Timestamp\files\before\20130226153530_timestampedFile.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -172,6 +136,42 @@
     <None Include="..\..\cfg\fixtures.json">
       <Link>fixtures.json</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Bump\files\nuspec\Nuspec_Before.nuspec">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Bump\files\nuspec\Nuspec_MajorBumped.nuspec">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Bump\files\nuspec\Nuspec_MinorBumped.nuspec">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Bump\files\nuspec\Nuspec_PatchBumped.nuspec">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Content Include="Bump\files\script\Script_Before.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Bump\files\script\Script_MajorBumped.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Bump\files\script\Script_MinorBumped.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Bump\files\script\Script_PatchBumped.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Bump\files\AssemblyInfo\AssemblyInfo_PatchBumped_cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Bump\files\AssemblyInfo\AssemblyInfo_MinorBumped_cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Bump\files\AssemblyInfo\AssemblyInfo_MajorBumped_cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Bump\files\AssemblyInfo\AssemblyInfo_Before_cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
