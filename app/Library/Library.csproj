@@ -47,21 +47,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Config.cs" />
-    <Compile Include="Scripts\Script.cs" />
-    <Compile Include="Scripts\RunException.cs" />
-    <Compile Include="Scripts\Tasks\CheckForVersionTable.cs" />
-    <Compile Include="Scripts\Tasks\RunSql.cs" />
-    <Compile Include="Scripts\Tasks\InsertInstalledVersion.cs" />
-    <Compile Include="Scripts\Tasks\Run.cs" />
-    <Compile Include="Scripts\Tasks\RunProcess.cs" />
-    <Compile Include="Scripts\Tasks\SplitSqlOnGo.cs" />
-    <Compile Include="Scripts\Version.cs" />
-    <Compile Include="Scripts\Tasks\FetchInstalledVersions.cs" />
-    <Compile Include="Scripts\Tasks\CreateVersionTable.cs" />
-    <Compile Include="Scripts\Tasks\GetScripts.cs" />
-    <Compile Include="Scripts\Tasks\RunScripts.cs" />
-    <Compile Include="Scripts\Tasks\RunMissingVersions.cs" />
     <Compile Include="Commands.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Main.cs" />
@@ -90,6 +75,10 @@
     <ProjectReference Include="..\Please.Bump\Please.Bump.csproj">
       <Project>{AE50C734-C2A5-4080-B73F-8D6FFC36DF61}</Project>
       <Name>Please.Bump</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Please.Run\Please.Run.csproj">
+      <Project>{FB8173A7-37DE-4527-AD81-B95C9162BD6C}</Project>
+      <Name>Please.Run</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

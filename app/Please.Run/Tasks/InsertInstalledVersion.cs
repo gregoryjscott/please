@@ -1,0 +1,32 @@
+﻿using Simpler;
+using Simpler.Data;
+using Please.Run.Models;
+
+namespace Please.Run.Tasks
+{
+    public class InsertInstalledVersion : InOutTask<InsertInstalledVersion.Input, InsertInstalledVersion.Output>
+    {
+        public class Input
+        {
+            public string ConnectionName { get; set; }
+            public Version Version { get; set; }
+        }
+
+        public class Output
+        {
+            public int RowsAffected { get; set; }
+        }
+
+        public override void Execute()
+        {
+            var sql = @"INSERT INTO db_version (version) VALUES ('{0}');";
+
+            sql = System.String.Format(sql, In.Version.Id);
+
+            using (var connection = Db.Connect(In.ConnectionName))
+            {
+                Out.RowsAffected = Db.GetResult(connection, sql);
+            }
+        }
+    }
+}

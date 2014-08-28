@@ -55,17 +55,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Scripts\Tasks\CheckForVersionTableTest.cs" />
-    <Compile Include="Scripts\Tasks\RunSqlTest.cs" />
-    <Compile Include="Scripts\Tasks\RunProcessTest.cs" />
-    <Compile Include="Scripts\Tasks\SplitSqlOnGoTest.cs" />
-    <Compile Include="Scripts\Tasks\RunTest.cs" />
-    <Compile Include="Scripts\Tasks\InsertInstalledVersionTest.cs" />
-    <Compile Include="Scripts\Tasks\FetchInstalledVersionsTest.cs" />
-    <Compile Include="Scripts\Tasks\CreateVersionTableTest.cs" />
-    <Compile Include="Scripts\Tasks\GetScriptsTest.cs" />
-    <Compile Include="Scripts\Tasks\RunScriptsTest.cs" />
-    <Compile Include="Scripts\Tasks\RunMissingVersionsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Timestamp\Tasks\GetFilesTest.cs" />
     <Compile Include="Timestamp\Tasks\AddTimestampTest.cs" />
@@ -78,50 +67,25 @@
     <Compile Include="Bump\Tasks\BumpAssemblyInfoTest.cs" />
     <Compile Include="Bump\Tasks\BumpScriptTest.cs" />
     <Compile Include="Bump\Tasks\BumpVersionTest.cs" />
+    <Compile Include="Run\Tasks\CheckForVersionTableTest.cs" />
+    <Compile Include="Run\Tasks\RunSqlTest.cs" />
+    <Compile Include="Run\Tasks\RunProcessTest.cs" />
+    <Compile Include="Run\Tasks\SplitSqlOnGoTest.cs" />
+    <Compile Include="Run\Tasks\RunSomethingTest.cs" />
+    <Compile Include="Run\Tasks\InsertInstalledVersionTest.cs" />
+    <Compile Include="Run\Tasks\FetchInstalledVersionsTest.cs" />
+    <Compile Include="Run\Tasks\CreateVersionTableTest.cs" />
+    <Compile Include="Run\Tasks\GetScriptsTest.cs" />
+    <Compile Include="Run\Tasks\RunScriptsTest.cs" />
+    <Compile Include="Run\Tasks\RunMissingVersionsTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\files\sql\error.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\files\sql\insert-version.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\files\py\2_error.py">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\files\py\1_hello.py">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\files\sql\GO\create-four-tables.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\files\sql\versioned\000001_create-testing-table.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\files\sql\versioned\000002_001.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\files\sql\versioned\000002_002.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\files\sql\versioned\000003_do-something-else.sql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Scripts\files\sql\versioned\whitelist.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="x64\SQLite.Interop.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="x86\SQLite.Interop.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Scripts\files\empty.db">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Scripts\files\test.db">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Timestamp\files\before\20130226153530_timestampedFile.txt">
@@ -173,6 +137,42 @@
     <None Include="Bump\files\AssemblyInfo\AssemblyInfo_Before_cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Content Include="Run\files\sql\error.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Run\files\sql\insert-version.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Run\files\py\2_error.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Run\files\py\1_hello.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Run\files\sql\GO\create-four-tables.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Run\files\sql\versioned\000001_create-testing-table.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Run\files\sql\versioned\000002_001.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Run\files\sql\versioned\000002_002.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Run\files\sql\versioned\000003_do-something-else.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Run\files\sql\versioned\whitelist.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Run\files\empty.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Run\files\test.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Library\Library.csproj">
@@ -190,6 +190,10 @@
     <ProjectReference Include="..\Please.Bump\Please.Bump.csproj">
       <Project>{AE50C734-C2A5-4080-B73F-8D6FFC36DF61}</Project>
       <Name>Please.Bump</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Please.Run\Please.Run.csproj">
+      <Project>{FB8173A7-37DE-4527-AD81-B95C9162BD6C}</Project>
+      <Name>Please.Run</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

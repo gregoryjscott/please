@@ -1,0 +1,29 @@
+﻿using System.IO;
+using NUnit.Framework;
+using Simpler;
+using Please.Run.Tasks;
+
+namespace Tests.Run.Tasks
+{
+    [TestFixture]
+    public class SplitSqlOnGoTest
+    {
+        [Test]
+        public void should_split_script_into_multiple_strings_based_on_occurrences_of_the_GO_keyword()
+        {
+            // Arrange
+            var splitScriptOnGo = Task.New<SplitSqlOnGo>();
+            splitScriptOnGo.In.Sql = File.ReadAllText(Config.Scripts.Files.Sql.Go.CreateFourTables);
+
+            // Act
+            splitScriptOnGo.Execute();
+
+            // Assert
+            Assert.That(splitScriptOnGo.Out.SqlStrings.Length, Is.EqualTo(4));
+            Assert.That(splitScriptOnGo.Out.SqlStrings[0].Contains("table1"));
+            Assert.That(splitScriptOnGo.Out.SqlStrings[1].Contains("table2"));
+            Assert.That(splitScriptOnGo.Out.SqlStrings[2].Contains("table3"));
+            Assert.That(splitScriptOnGo.Out.SqlStrings[3].Contains("table4"));
+        }
+    }
+}
