@@ -15,7 +15,7 @@ namespace Tests
         dynamic fixtures = Centroid.Config.FromFile("fixtures.json");
 
         [Test]
-        public void should_send_input_to_bump_version()
+        public void should_execute_bump_version()
         {
             dynamic inputs = fixtures.Bump.Inputs;
             foreach (var input in inputs)
@@ -31,7 +31,7 @@ namespace Tests
         }
 
         [Test]
-        public void should_send_input_to_run_sql()
+        public void should_execute_run_sql()
         {
             dynamic inputs = fixtures.RunSql.Inputs;
             foreach (var input in inputs)
@@ -49,7 +49,7 @@ namespace Tests
         }
 
         [Test]
-        public void should_send_input_to_run_py()
+        public void should_execute_run_py()
         {
             dynamic inputs = fixtures.RunSql.Inputs;
             foreach (var input in inputs)
@@ -67,7 +67,7 @@ namespace Tests
         }
 
         [Test]
-        public void should_send_input_to_run_all()
+        public void should_execute_run_all()
         {
             dynamic inputs = fixtures.RunSql.Inputs;
             foreach (var input in inputs)
@@ -86,7 +86,7 @@ namespace Tests
         }
 
         [Test]
-        public void should_send_input_to_timestamp()
+        public void should_execute_timestamp()
         {
             dynamic inputs = fixtures.Directory.Inputs;
             foreach (var input in inputs)
