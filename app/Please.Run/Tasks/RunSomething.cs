@@ -5,6 +5,12 @@ using Please.Run.Models;
 
 namespace Please.Run.Tasks
 {
+    // TODOs
+    // * Change WhitelistFile to Whitelist (multiple files)
+    // * Get rid of File option, Whitelist should cover it.
+    // * Should Whitelist and Extenstions be combined into just wildcard type search?
+    // * Switch from using ConnectionName to Connection
+    // * Pass in Timeout so that Config can be eliminated
     public class RunSomething : InTask<RunSomething.Input>
     {
         public class Input
