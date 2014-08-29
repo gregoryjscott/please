@@ -11,20 +11,18 @@ namespace Tests.Run.Tasks
     [TestFixture]
     public class RunSomethingTest
     {
-        public static Please.Run.Models.Version[] TestVersions = new[] {
+        public static Please.Run.Models.Version[] TestVersions = {
             new Please.Run.Models.Version {Id = "001"},
             new Please.Run.Models.Version {Id = "002"},
             new Please.Run.Models.Version {Id = "003"}
         };
 
-        public static Script[] TestScripts =
-            new[]
-                {
-                    new Script {VersionId = "001", FileName = "001_first"},
-                    new Script {VersionId = "002", FileName = "002_second"},
-                    new Script {VersionId = "002", FileName = "002_third"},
-                    new Script {VersionId = "003", FileName = "003_fourth"}
-                };
+        public static Script[] TestScripts = {
+            new Script { VersionId = "001", FileName = "001_first" },
+            new Script { VersionId = "002", FileName = "002_second" },
+            new Script { VersionId = "002", FileName = "002_third" },
+            new Script { VersionId = "003", FileName = "003_fourth" }
+        };
 
         [Test]
         public void should_not_create_version_table_without_versioning()
