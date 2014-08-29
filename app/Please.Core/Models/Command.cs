@@ -19,22 +19,7 @@ namespace Please.Core.Models
                 Task = (TTask)createTask.Out.TaskInstance;
             }
 
-            foreach (var option in Options)
-            {
-                if ((Name == "add timestamp") || (Name == "bump version") || (Name == "run sql"))
-                {
-                    option.Action2((TTask)Task, options);
-                }
-                else
-                {
-                    var match = Regex.Match(options, option.Pattern);
-                    if (match.Success)
-                    {
-                        option.Action((TTask)Task, match);
-                        options = options.Replace(match.ToString(), "");
-                    }
-                }
-            }
+            Options[0].Action2((TTask)Task, options);
 
             Task.Execute();
         }

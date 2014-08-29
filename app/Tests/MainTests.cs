@@ -42,226 +42,51 @@ namespace Tests
                 Assert.That(runSql.Stats.ExecuteCount, Is.EqualTo(1));
                 Assert.That(runSql.In.ConnectionName, Is.EqualTo(input.ConnectionName));
                 Assert.That(runSql.In.Directory, Is.EqualTo(input.Directory));
+                Assert.That(runSql.In.Extensions.Length, Is.EqualTo(1));
                 Assert.That(runSql.In.Extensions[0], Is.EqualTo(".sql"));
                 Assert.That(runSql.In.WithVersioning, Is.True);
             }
         }
 
         [Test]
-        public void should_run_sql_with_versioning()
+        public void should_send_input_to_run_py()
         {
-            var run = ShouldExecute<RunSomething>("run sql with versioning");
-
-            Assert.That(run.Stats.ExecuteCount, Is.EqualTo(1));
-            Assert.That(run.In.WithVersioning, "Expected with versioning to be true.");
-        }
-
-        [Test]
-        public void should_run_sql_without_versioning()
-        {
-            var run = ShouldExecute<RunSomething>("run sql");
-
-            Assert.That(run.Stats.ExecuteCount, Is.EqualTo(1));
-            Assert.That(!run.In.WithVersioning, "Expected with versioning to be false.");
-        }
-
-        [Test]
-        public void should_run_sql_on_database()
-        {
-            var run = ShouldExecute<RunSomething>("run sql on DEV");
-
-            Assert.That(run.Stats.ExecuteCount, Is.EqualTo(1));
-            Assert.That(run.In.ConnectionName, Is.EqualTo("DEV"));
-        }
-
-        [Test]
-        public void should_run_sql_in_directory()
-        {
-            var directories =
-                new[]
-                    {
-                        @"SomeDirectory",
-                        @"Some\Directory",
-                        @".\SomeDirectory",
-                        @"\\SomeDirectory",
-                        @"c:\SomeDirectory",
-                        @"Some Directory",
-                        @".\Some Directory",
-                        @"c:\Some Directory"
-                    };
-
-            foreach (var directory in directories)
+            dynamic inputs = fixtures.RunSql.Inputs;
+            foreach (var input in inputs)
             {
-                var commandText = String.Format("run sql in {0} on DEV", directory);
-                var run = ShouldExecute<RunSomething>(commandText);
+                var commandText = String.Format("run py {0}", input);
+                RunSomething runSql = ShouldExecute<RunSomething>(commandText);
 
-                Assert.That(run.Stats.ExecuteCount, Is.EqualTo(1));
-                Assert.That(run.In.Directory, Is.EqualTo(directory));
+                Assert.That(runSql.Stats.ExecuteCount, Is.EqualTo(1));
+                Assert.That(runSql.In.ConnectionName, Is.EqualTo(input.ConnectionName));
+                Assert.That(runSql.In.Directory, Is.EqualTo(input.Directory));
+                Assert.That(runSql.In.Extensions.Length, Is.EqualTo(1));
+                Assert.That(runSql.In.Extensions[0], Is.EqualTo(".py"));
+                Assert.That(runSql.In.WithVersioning, Is.True);
             }
         }
 
         [Test]
-        public void should_run_sql_file()
+        public void should_send_input_to_run_all()
         {
-            var directories =
-                new[]
-                    {
-                        @"SomeDirectory\test.sql",
-                        @"Some\Directory\test.sql",
-                        @".\SomeDirectory\test.sql",
-                        @"\\SomeDirectory\test.sql",
-                        @"c:\SomeDirectory\test.sql",
-                        @"Some Directory\test.sql",
-                        @".\Some Directory\test.sql",
-                        @"c:\Some Directory\test.sql"
-                    };
-
-            foreach (var directory in directories)
+            dynamic inputs = fixtures.RunSql.Inputs;
+            foreach (var input in inputs)
             {
-                var commandText = String.Format("run sql file {0} on DEV", directory);
-                var run = ShouldExecute<RunSomething>(commandText);
+                var commandText = String.Format("run all {0}", input);
+                RunSomething runSql = ShouldExecute<RunSomething>(commandText);
 
-                Assert.That(run.Stats.ExecuteCount, Is.EqualTo(1));
-                Assert.That(run.In.File, Is.EqualTo(directory));
+                Assert.That(runSql.Stats.ExecuteCount, Is.EqualTo(1));
+                Assert.That(runSql.In.ConnectionName, Is.EqualTo(input.ConnectionName));
+                Assert.That(runSql.In.Directory, Is.EqualTo(input.Directory));
+                Assert.That(runSql.In.Extensions.Length, Is.EqualTo(2));
+                Assert.That(runSql.In.Extensions, Contains.Item(".sql"));
+                Assert.That(runSql.In.Extensions, Contains.Item(".py"));
+                Assert.That(runSql.In.WithVersioning, Is.True);
             }
         }
 
         [Test]
-        public void should_run_sql_include_whitelist_in_directory()
-        {
-            const string whitelistFile = @".\whitelist.txt";
-            var run = ShouldExecute<RunSomething>(@"run sql include " + whitelistFile + @" in .\Directory");
-
-            Assert.That(run.Stats.ExecuteCount, Is.EqualTo(1));
-            Assert.That(run.In.WhitelistFile, Is.EqualTo(whitelistFile));
-        }
-
-        [Test]
-        public void should_run_py_with_versioning()
-        {
-            var run = ShouldExecute<RunSomething>("run py with versioning on DEV");
-
-            Assert.That(run.Stats.ExecuteCount, Is.EqualTo(1));
-            Assert.That(run.In.WithVersioning, "Expected with versioning to be true.");
-        }
-
-        [Test]
-        public void should_run_py_without_versioning()
-        {
-            var run = ShouldExecute<RunSomething>("run py");
-
-            Assert.That(run.Stats.ExecuteCount, Is.EqualTo(1));
-            Assert.That(!run.In.WithVersioning, "Expected with versioning to be false.");
-        }
-
-        [Test]
-        public void should_run_py_in_directory()
-        {
-            var directories =
-                new[]
-                    {
-                        @"SomeDirectory",
-                        @"Some\Directory",
-                        @".\SomeDirectory",
-                        @"\\SomeDirectory",
-                        @"c:\SomeDirectory",
-                        @"Some Directory",
-                        @".\Some Directory",
-                        @"c:\Some Directory"
-                    };
-
-            foreach (var directory in directories)
-            {
-                var commandText = String.Format("run py in {0}", directory);
-                var run = ShouldExecute<RunSomething>(commandText);
-
-                Assert.That(run.Stats.ExecuteCount, Is.EqualTo(1));
-                Assert.That(run.In.Directory, Is.EqualTo(directory));
-            }
-        }
-
-        [Test]
-        public void should_run_py_file()
-        {
-            var directories =
-                new[]
-                    {
-                        @"SomeDirectory\test.py",
-                        @"Some\Directory\test.py",
-                        @".\SomeDirectory\test.py",
-                        @"\\SomeDirectory\test.py",
-                        @"c:\SomeDirectory\test.py",
-                        @"Some Directory\test.py",
-                        @".\Some Directory\test.py",
-                        @"c:\Some Directory\test.py"
-                    };
-
-            foreach (var directory in directories)
-            {
-                var commandText = String.Format("run py file {0}", directory);
-                var run = ShouldExecute<RunSomething>(commandText);
-
-                Assert.That(run.Stats.ExecuteCount, Is.EqualTo(1));
-                Assert.That(run.In.File, Is.EqualTo(directory));
-            }
-        }
-
-        [Test]
-        public void should_run_all_with_versioning()
-        {
-            var run = ShouldExecute<RunSomething>("run all with versioning on DEV");
-
-            Assert.That(run.Stats.ExecuteCount, Is.EqualTo(1));
-            Assert.That(run.In.WithVersioning, "Expected with versioning to be true.");
-        }
-
-        [Test]
-        public void should_run_all_without_versioning()
-        {
-            var run = ShouldExecute<RunSomething>("run all");
-
-            Assert.That(run.Stats.ExecuteCount, Is.EqualTo(1));
-            Assert.That(!run.In.WithVersioning, "Expected with versioning to be false.");
-        }
-
-        [Test]
-        public void should_run_all_in_directory()
-        {
-            var directories =
-                new[]
-                    {
-                        @"SomeDirectory",
-                        @"Some\Directory",
-                        @".\SomeDirectory",
-                        @"\\SomeDirectory",
-                        @"c:\SomeDirectory",
-                        @"Some Directory",
-                        @".\Some Directory",
-                        @"c:\Some Directory"
-                    };
-
-            foreach (var directory in directories)
-            {
-                var commandText = String.Format("run all in {0}", directory);
-                var run = ShouldExecute<RunSomething>(commandText);
-
-                Assert.That(run.Stats.ExecuteCount, Is.EqualTo(1));
-                Assert.That(run.In.Directory, Is.EqualTo(directory));
-            }
-        }
-
-        [Test]
-        public void should_run_py_include_whitelist_in_directory()
-        {
-            const string whitelistFile = @".\whitelist.txt";
-            var run = ShouldExecute<RunSomething>(@"run sql include " + whitelistFile + @" in .\Directory");
-
-            Assert.That(run.Stats.ExecuteCount, Is.EqualTo(1));
-            Assert.That(run.In.WhitelistFile, Is.EqualTo(whitelistFile));
-        }
-
-        [Test]
-        public void should_add_timestamp_in_directory()
+        public void should_send_input_to_timestamp()
         {
             dynamic inputs = fixtures.Directory.Inputs;
             foreach (var input in inputs)
