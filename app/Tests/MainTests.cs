@@ -31,6 +31,23 @@ namespace Tests
         }
 
         [Test]
+        public void should_send_input_to_run_sql()
+        {
+            dynamic inputs = fixtures.RunSql.Inputs;
+            foreach (var input in inputs)
+            {
+                var commandText = String.Format("run sql {0}", input);
+                RunSomething runSql = ShouldExecute<RunSomething>(commandText);
+
+                Assert.That(runSql.Stats.ExecuteCount, Is.EqualTo(1));
+                Assert.That(runSql.In.ConnectionName, Is.EqualTo(input.ConnectionName));
+                Assert.That(runSql.In.Directory, Is.EqualTo(input.Directory));
+                Assert.That(runSql.In.Extensions[0], Is.EqualTo(".sql"));
+                Assert.That(runSql.In.WithVersioning, Is.True);
+            }
+        }
+
+        [Test]
         public void should_run_sql_with_versioning()
         {
             var run = ShouldExecute<RunSomething>("run sql with versioning");

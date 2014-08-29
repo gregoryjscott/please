@@ -29,5 +29,14 @@
         "fileType": "Script"
       }
     ]
+  },
+  "runSql": {
+    "inputs": [
+      {
+        "connectionName": "DEV",
+        "directory": "db/migrations",
+        "withVersioning": true
+      }
+    ]
   }
 }
