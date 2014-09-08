@@ -1,0 +1,15 @@
+{
+  "runSql": {
+    "assembly": "Please.Run.dll",
+    "task": "RunSql",
+    "input": [
+      {
+        "connectionName": "DEV",
+        "directory": "db/migrations",
+        "withVersioning": true
+      }
+    ],
+    "usage": "please Config.runSql",
+    "usage": "please run sql please.runSql.input"
+  }
+}
