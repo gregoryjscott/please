@@ -51,6 +51,11 @@ namespace Library.Scripts.Tasks
                     fileQualifies = fileSearch.IsMatch(whitelist);
                 }
 
+                if (fileQualifies && Config.PythonMode == PythonMode.Module)
+                {
+                    fileQualifies = !(fileNameWithoutPath.StartsWith("__") && fileNameWithoutPath.EndsWith("__.py", StringComparison.OrdinalIgnoreCase));
+                }
+
                 if (fileQualifies)
                 {
                     var match = Regex.Match(fileNameWithoutPath, versionedPattern);
