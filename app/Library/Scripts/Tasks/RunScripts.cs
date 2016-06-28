@@ -33,7 +33,7 @@ namespace Library.Scripts.Tasks
                 else if (String.Compare(extension, ".py", StringComparison.OrdinalIgnoreCase) == 0)
                 {
                     RunProcess.In.FileName = "python";
-                    RunProcess.In.Arguments = script.FileName;
+                    RunProcess.In.Arguments = GetPythonArguments(script.FileName);
                     RunProcess.Execute();
                 }
                 else
@@ -41,6 +41,13 @@ namespace Library.Scripts.Tasks
                     throw new RunException(String.Format("Don't know how to run {0}.", fileName));
                 }
             }
+        }
+
+        private string GetPythonArguments(string fileName)
+        {
+            if (Config.PythonMode == PythonMode.Script) return fileName;
+            var extension = Path.GetExtension(fileName);
+            return String.Format("-m {0}", fileName.Replace("\\", ".").Substring(0, fileName.Length - extension.Length));
         }
     }
 }

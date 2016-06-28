@@ -31,6 +31,9 @@ namespace Library.Timestamp.Tasks
                 var directoryName = Path.GetDirectoryName(file);
                 var isTimestamped = Regex.IsMatch(fileName, timestampPattern, RegexOptions.None);
 
+                if (Config.PythonMode == PythonMode.Module && fileName.StartsWith("__") && file.EndsWith("__.py", StringComparison.OrdinalIgnoreCase))
+                    continue;
+
                 var timestampFile = new TimestampFile
                 {
                     FileName = fileName,
